@@ -457,6 +457,15 @@ namespace v2rayN.Resx {
         }
         
         /// <summary>
+        ///   查找类似 Download GeoFile: {0} successfully 的本地化字符串。
+        /// </summary>
+        internal static string MsgDownloadGeoFileSuccessfully {
+            get {
+                return ResourceManager.GetString("MsgDownloadGeoFileSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Download Core successfully 的本地化字符串。
         /// </summary>
         internal static string MsgDownloadV2rayCoreSuccessfully {
@@ -480,6 +489,15 @@ namespace v2rayN.Resx {
         internal static string MsgGetSubscriptionSuccessfully {
             get {
                 return ResourceManager.GetString("MsgGetSubscriptionSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Informations (Filter : {0}) 的本地化字符串。
+        /// </summary>
+        internal static string MsgInformationTitle {
+            get {
+                return ResourceManager.GetString("MsgInformationTitle", resourceCulture);
             }
         }
         

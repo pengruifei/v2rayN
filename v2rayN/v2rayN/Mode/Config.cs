@@ -161,6 +161,10 @@ namespace v2rayN.Mode
         {
             get; set;
         }
+        public string domainMatcher
+        {
+            get; set;
+        }
         public int routingIndex
         {
             get; set;
@@ -182,6 +186,19 @@ namespace v2rayN.Mode
         {
             get; set;
         }
+
+        /// <summary>
+        /// systemProxyExceptions
+        /// </summary>
+        public string systemProxyExceptions
+        {
+            get; set;
+        }
+
+        public int autoUpdateInterval
+        {
+            get; set;
+        } = 0;
 
         #region 函数
 

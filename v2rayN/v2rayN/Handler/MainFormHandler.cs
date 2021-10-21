@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Drawing;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using v2rayN.Base;
 using v2rayN.Mode;
@@ -9,7 +11,7 @@ namespace v2rayN.Handler
     class MainFormHandler
     {
         private static MainFormHandler instance;
-        Action<bool, string> updateUI;
+        Action<bool, string> _updateUI;
 
         //private DownloadHandle downloadHandle2;
         //private Config _config;
@@ -166,76 +168,82 @@ namespace v2rayN.Handler
             return counter;
         }
 
-
-        public void UpdateSubscriptionProcess(Config config, Action<bool, string> update)
+        public void BackupGuiNConfig(Config config, bool auto = false)
         {
-            updateUI = update;
-
-            updateUI(false, UIRes.I18N("MsgUpdateSubscriptionStart"));
-
-            if (config.subItem == null || config.subItem.Count <= 0)
+            string fileName = string.Empty;
+            if (auto)
             {
-                updateUI(false, UIRes.I18N("MsgNoValidSubscription"));
+                fileName = Utils.GetTempPath($"guiNConfig{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.json");
+            }
+            else
+            {
+                SaveFileDialog fileDialog = new SaveFileDialog
+                {
+                    Filter = "guiNConfig|*.json",
+                    FilterIndex = 2,
+                    RestoreDirectory = true
+                };
+                if (fileDialog.ShowDialog() != DialogResult.OK)
+                {
+                    return;
+                }
+                fileName = fileDialog.FileName;
+            }
+            if (Utils.IsNullOrEmpty(fileName))
+            {
                 return;
             }
-
-            for (int k = 1; k <= config.subItem.Count; k++)
+            var ret = Utils.ToJsonFile(config, fileName);
+            if (!auto)
             {
-                string id = config.subItem[k - 1].id.TrimEx();
-                string url = config.subItem[k - 1].url.TrimEx();
-                string hashCode = $"{k}->";
-                if (config.subItem[k - 1].enabled == false)
+                if (ret == 0)
                 {
-                    continue;
+
+                    UI.Show(UIRes.I18N("OperationSuccess"));
                 }
-                if (Utils.IsNullOrEmpty(id) || Utils.IsNullOrEmpty(url))
+                else
                 {
-                    updateUI(false, $"{hashCode}{UIRes.I18N("MsgNoValidSubscription")}");
-                    continue;
+                    UI.ShowWarning(UIRes.I18N("OperationFailed"));
                 }
-
-                DownloadHandle downloadHandle3 = new DownloadHandle();
-                downloadHandle3.UpdateCompleted += (sender2, args) =>
-                {
-                    if (args.Success)
-                    {
-                        updateUI(false, $"{hashCode}{UIRes.I18N("MsgGetSubscriptionSuccessfully")}");
-                        string result = Utils.Base64Decode(args.Msg);
-                        if (Utils.IsNullOrEmpty(result))
-                        {
-                            updateUI(false, $"{hashCode}{UIRes.I18N("MsgSubscriptionDecodingFailed")}");
-                            return;
-                        }
-
-                        ConfigHandler.RemoveServerViaSubid(ref config, id);
-                        updateUI(false, $"{hashCode}{UIRes.I18N("MsgClearSubscription")}");
-                        //  RefreshServers();
-                        int ret = MainFormHandler.Instance.AddBatchServers(config, result, id);
-                        if (ret > 0)
-                        {
-                            // RefreshServers();
-                        }
-                        else
-                        {
-                            updateUI(false, $"{hashCode}{UIRes.I18N("MsgFailedImportSubscription")}");
-                        }
-                        updateUI(true, $"{hashCode}{UIRes.I18N("MsgUpdateSubscriptionEnd")}");
-                    }
-                    else
-                    {
-                        updateUI(false, args.Msg);
-                    }
-                };
-                downloadHandle3.Error += (sender2, args) =>
-                {
-                    updateUI(false, args.GetException().Message);
-                };
-
-                downloadHandle3.WebDownloadString(url);
-                updateUI(false, $"{hashCode}{UIRes.I18N("MsgStartGettingSubscriptions")}");
             }
-
         }
 
+        public void UpdateTask(Config config, Action<bool, string> update)
+        {
+            _updateUI = update;
+            Task.Run(() => UpdateTaskRun(config));
+        }
+
+        private void UpdateTaskRun(Config config)
+        {
+            var updateHandle = new UpdateHandle();
+            while (true)
+            {
+                Utils.SaveLog("UpdateTaskRun");
+                Thread.Sleep(60000);
+                if (config.autoUpdateInterval <= 0)
+                {
+                    continue;
+                }
+
+                updateHandle.UpdateGeoFile("geosite", config, (bool success, string msg) =>
+                {
+                    _updateUI(false, msg);
+                    if (success)
+                        Utils.SaveLog("geosite" + msg);
+                });
+
+                Thread.Sleep(60000);
+
+                updateHandle.UpdateGeoFile("geoip", config, (bool success, string msg) =>
+                {
+                    _updateUI(false, msg);
+                    if (success)
+                        Utils.SaveLog("geoip" + msg);
+                });
+
+                Thread.Sleep(1000 * 3600 * config.autoUpdateInterval);
+            }
+        }
     }
 }

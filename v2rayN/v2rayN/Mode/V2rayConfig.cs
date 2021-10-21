@@ -332,6 +332,10 @@ namespace v2rayN.Mode
         /// <summary>
         /// 
         /// </summary>
+        public string domainMatcher { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public List<RulesItem> rules { get; set; }
     }
 
@@ -518,6 +522,10 @@ namespace v2rayN.Mode
         /// 
         /// </summary>
         public string serviceName { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool multiMode { get; set; }
     }
 
 }

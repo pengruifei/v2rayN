@@ -69,6 +69,8 @@
             this.txtKcpmtu = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.txtautoUpdateInterval = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.chkIgnoreGeoUpdateCore = new System.Windows.Forms.CheckBox();
             this.cmbCoreType = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -78,6 +80,11 @@
             this.chkEnableStatistics = new System.Windows.Forms.CheckBox();
             this.chkAllowLANConn = new System.Windows.Forms.CheckBox();
             this.chkAutoRun = new System.Windows.Forms.CheckBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtsystemProxyExceptions = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnOK = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -87,37 +94,39 @@
             this.tabPage2.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.tabPage7.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnClose
             // 
-            resources.ApplyResources(this.btnClose, "btnClose");
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            resources.ApplyResources(this.btnClose, "btnClose");
             this.btnClose.Name = "btnClose";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // tabControl1
             // 
-            resources.ApplyResources(this.tabControl1, "tabControl1");
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Controls.Add(this.tabPage7);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            resources.ApplyResources(this.tabControl1, "tabControl1");
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             // 
             // tabPage1
             // 
-            resources.ApplyResources(this.tabPage1, "tabPage1");
             this.tabPage1.Controls.Add(this.groupBox1);
+            resources.ApplyResources(this.tabPage1, "tabPage1");
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
-            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Controls.Add(this.chkdefAllowInsecure);
             this.groupBox1.Controls.Add(this.chksniffingEnabled2);
             this.groupBox1.Controls.Add(this.chksniffingEnabled);
@@ -135,6 +144,7 @@
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.txtlocalPort);
             this.groupBox1.Controls.Add(this.label2);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
@@ -177,12 +187,12 @@
             // 
             // cmbprotocol2
             // 
-            resources.ApplyResources(this.cmbprotocol2, "cmbprotocol2");
             this.cmbprotocol2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbprotocol2.FormattingEnabled = true;
             this.cmbprotocol2.Items.AddRange(new object[] {
             resources.GetString("cmbprotocol2.Items"),
             resources.GetString("cmbprotocol2.Items1")});
+            resources.ApplyResources(this.cmbprotocol2, "cmbprotocol2");
             this.cmbprotocol2.Name = "cmbprotocol2";
             // 
             // label3
@@ -197,8 +207,8 @@
             // 
             // cmbprotocol
             // 
-            resources.ApplyResources(this.cmbprotocol, "cmbprotocol");
             this.cmbprotocol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            resources.ApplyResources(this.cmbprotocol, "cmbprotocol");
             this.cmbprotocol.FormattingEnabled = true;
             this.cmbprotocol.Items.AddRange(new object[] {
             resources.GetString("cmbprotocol.Items"),
@@ -224,7 +234,6 @@
             // 
             // cmbloglevel
             // 
-            resources.ApplyResources(this.cmbloglevel, "cmbloglevel");
             this.cmbloglevel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbloglevel.FormattingEnabled = true;
             this.cmbloglevel.Items.AddRange(new object[] {
@@ -233,6 +242,7 @@
             resources.GetString("cmbloglevel.Items2"),
             resources.GetString("cmbloglevel.Items3"),
             resources.GetString("cmbloglevel.Items4")});
+            resources.ApplyResources(this.cmbloglevel, "cmbloglevel");
             this.cmbloglevel.Name = "cmbloglevel";
             // 
             // label5
@@ -252,10 +262,10 @@
             // 
             // tabPage2
             // 
-            resources.ApplyResources(this.tabPage2, "tabPage2");
             this.tabPage2.Controls.Add(this.linkDnsObjectDoc);
             this.tabPage2.Controls.Add(this.txtremoteDNS);
             this.tabPage2.Controls.Add(this.label14);
+            resources.ApplyResources(this.tabPage2, "tabPage2");
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
@@ -278,7 +288,6 @@
             // 
             // tabPage6
             // 
-            resources.ApplyResources(this.tabPage6, "tabPage6");
             this.tabPage6.Controls.Add(this.chkKcpcongestion);
             this.tabPage6.Controls.Add(this.txtKcpwriteBufferSize);
             this.tabPage6.Controls.Add(this.label10);
@@ -292,6 +301,7 @@
             this.tabPage6.Controls.Add(this.label7);
             this.tabPage6.Controls.Add(this.txtKcpmtu);
             this.tabPage6.Controls.Add(this.label6);
+            resources.ApplyResources(this.tabPage6, "tabPage6");
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
@@ -363,7 +373,8 @@
             // 
             // tabPage7
             // 
-            resources.ApplyResources(this.tabPage7, "tabPage7");
+            this.tabPage7.Controls.Add(this.txtautoUpdateInterval);
+            this.tabPage7.Controls.Add(this.label15);
             this.tabPage7.Controls.Add(this.chkIgnoreGeoUpdateCore);
             this.tabPage7.Controls.Add(this.cmbCoreType);
             this.tabPage7.Controls.Add(this.label4);
@@ -373,8 +384,19 @@
             this.tabPage7.Controls.Add(this.chkEnableStatistics);
             this.tabPage7.Controls.Add(this.chkAllowLANConn);
             this.tabPage7.Controls.Add(this.chkAutoRun);
+            resources.ApplyResources(this.tabPage7, "tabPage7");
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // txtautoUpdateInterval
+            // 
+            resources.ApplyResources(this.txtautoUpdateInterval, "txtautoUpdateInterval");
+            this.txtautoUpdateInterval.Name = "txtautoUpdateInterval";
+            // 
+            // label15
+            // 
+            resources.ApplyResources(this.label15, "label15");
+            this.label15.Name = "label15";
             // 
             // chkIgnoreGeoUpdateCore
             // 
@@ -384,12 +406,12 @@
             // 
             // cmbCoreType
             // 
-            resources.ApplyResources(this.cmbCoreType, "cmbCoreType");
             this.cmbCoreType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCoreType.FormattingEnabled = true;
             this.cmbCoreType.Items.AddRange(new object[] {
             resources.GetString("cmbCoreType.Items"),
             resources.GetString("cmbCoreType.Items1")});
+            resources.ApplyResources(this.cmbCoreType, "cmbCoreType");
             this.cmbCoreType.Name = "cmbCoreType";
             // 
             // label4
@@ -405,9 +427,9 @@
             // 
             // cbFreshrate
             // 
-            resources.ApplyResources(this.cbFreshrate, "cbFreshrate");
             this.cbFreshrate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbFreshrate.FormattingEnabled = true;
+            resources.ApplyResources(this.cbFreshrate, "cbFreshrate");
             this.cbFreshrate.Name = "cbFreshrate";
             // 
             // lbFreshrate
@@ -433,11 +455,42 @@
             this.chkAutoRun.Name = "chkAutoRun";
             this.chkAutoRun.UseVisualStyleBackColor = true;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.groupBox2);
+            resources.ApplyResources(this.tabPage3, "tabPage3");
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label13);
+            this.groupBox2.Controls.Add(this.label12);
+            this.groupBox2.Controls.Add(this.txtsystemProxyExceptions);
+            resources.ApplyResources(this.groupBox2, "groupBox2");
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.TabStop = false;
+            // 
+            // label13
+            // 
+            resources.ApplyResources(this.label13, "label13");
+            this.label13.Name = "label13";
+            // 
+            // label12
+            // 
+            resources.ApplyResources(this.label12, "label12");
+            this.label12.Name = "label12";
+            // 
+            // txtsystemProxyExceptions
+            // 
+            resources.ApplyResources(this.txtsystemProxyExceptions, "txtsystemProxyExceptions");
+            this.txtsystemProxyExceptions.Name = "txtsystemProxyExceptions";
+            // 
             // panel2
             // 
-            resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Controls.Add(this.btnClose);
             this.panel2.Controls.Add(this.btnOK);
+            resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
             // 
             // btnOK
@@ -473,6 +526,9 @@
             this.tabPage6.PerformLayout();
             this.tabPage7.ResumeLayout(false);
             this.tabPage7.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -532,5 +588,12 @@
         private System.Windows.Forms.ComboBox cmbCoreType;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox chkIgnoreGeoUpdateCore;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TextBox txtsystemProxyExceptions;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox txtautoUpdateInterval;
+        private System.Windows.Forms.Label label15;
     }
 }

@@ -65,8 +65,9 @@ namespace v2rayN.Forms
             //remoteDNS
             txtremoteDNS.Text = config.remoteDNS;
 
-
             chkdefAllowInsecure.Checked = config.defAllowInsecure;
+
+            txtsystemProxyExceptions.Text = config.systemProxyExceptions;
         }
 
 
@@ -122,6 +123,7 @@ namespace v2rayN.Forms
 
             chkIgnoreGeoUpdateCore.Checked = config.ignoreGeoUpdateCore;
             cmbCoreType.SelectedIndex = (int)config.coreType;
+            txtautoUpdateInterval.Text = config.autoUpdateInterval.ToString();
         }
         private void btnOK_Click(object sender, EventArgs e)
         {
@@ -228,8 +230,9 @@ namespace v2rayN.Forms
             //remoteDNS
             config.remoteDNS = txtremoteDNS.Text.TrimEx();
 
-
             config.defAllowInsecure = chkdefAllowInsecure.Checked;
+
+            config.systemProxyExceptions = txtsystemProxyExceptions.Text.TrimEx();
 
             return 0;
         }
@@ -288,6 +291,7 @@ namespace v2rayN.Forms
 
             config.ignoreGeoUpdateCore = chkIgnoreGeoUpdateCore.Checked;
             config.coreType = (ECoreType)cmbCoreType.SelectedIndex;
+            config.autoUpdateInterval = Utils.ToInt(txtautoUpdateInterval.Text);
 
             return 0;
         }
